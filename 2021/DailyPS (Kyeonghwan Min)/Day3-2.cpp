@@ -3,8 +3,6 @@
 using namespace std;
 
 vector<string> report;
-string gamma_rate = "";
-string eplison_rate = "";
 
 unsigned long long get_ogr(void)
 {
@@ -114,8 +112,8 @@ unsigned long long get_csr(void)
 
 int main(void)
 {
-  //cin.tie(NULL);
-  //ios::sync_with_stdio(false);
+  cin.tie(NULL);
+  ios::sync_with_stdio(false);
 
   while (!cin.eof() && cin.good())
   {
