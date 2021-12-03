@@ -2,7 +2,7 @@ lines = None
 with open("./input.txt", "r") as f:
     lines = f.readlines()
 
-values = [int(num[:-1]) for num in lines]
+values = [int(num) for num in lines]
 
 # step 1
 cnt = 0
