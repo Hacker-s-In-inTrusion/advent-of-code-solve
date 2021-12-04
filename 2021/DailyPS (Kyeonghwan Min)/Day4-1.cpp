@@ -16,6 +16,7 @@ int main(void)
   int len = s.length();
   int tmp = 0;
 
+  // Push vector bingo ball list
   for (int i = 0; i < len; i++)
   {
     if (s[i] >= '0' && s[i] <= '9')
@@ -36,6 +37,7 @@ int main(void)
 
   while(!cin.eof() && cin.good())
   {
+    // Bingo Input
     for (int i = 0; i < 5; i++)
     {
       for (int j = 0; j < 5; j++)
@@ -47,6 +49,7 @@ int main(void)
     int col_correct[7] = { 0 };
     bool made_bingo = false, ball_correct[7][7] = { 0 };
 
+    // check bingo ball and check bingo is made
     for (ball_cnt = 0; ball_cnt < sz; ball_cnt++)
     {
       for (int j = 0; j < 5; j++)
@@ -75,6 +78,7 @@ int main(void)
         break;
     }
 
+    // if less ball used, then update answer
     if (min_ball_cnt > ball_cnt)
       min_ball_cnt = ball_cnt;
 
@@ -83,6 +87,7 @@ int main(void)
 
     int sum = 0;
 
+    // get unchecked numbers in bingo
     for (int i = 0; i < 5; i++)
     {
       for (int j = 0; j < 5; j++)
