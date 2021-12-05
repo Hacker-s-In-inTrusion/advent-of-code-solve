@@ -1,4 +1,3 @@
-from posixpath import split
 from aocd import data
 from aocd.models import Puzzle
 
