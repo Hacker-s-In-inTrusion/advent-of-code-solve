@@ -59,10 +59,5 @@ for node in data:
     else:
         pass
 
-score = 0
-for i in ocean:
-    for j in i:
-        if j > 1:
-            score += 1
+score = sum([sum(map(lambda x: x>1, o)) for o in ocean])
 print(score)
-
