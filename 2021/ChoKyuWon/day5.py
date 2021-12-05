@@ -2,10 +2,7 @@ from aocd import data
 from aocd.models import Puzzle
 
 def is_diagonal(node):
-    if abs(node[0]-node[2]) == abs(node[1] - node[3]):
-        return True
-    else:
-        return False
+    return abs(node[0]-node[2]) == abs(node[1] - node[3])
 puzzle = Puzzle(year=2021, day=5)
 res = 0
 
@@ -30,32 +27,24 @@ map_size = max(numbers) + 1
 ocean = [ [0]*map_size for i in range(map_size)]
 max_overlap = 0
 
-valid_nodes_x = []
-valid_nodes_y = []
 for node in data:
-    p2p = node.split("->")
-    x1 = int(p2p[0].strip().split(",")[0])
-    y1 = int(p2p[0].strip().split(",")[1])
-    x2 = int(p2p[1].strip().split(",")[0])
-    y2 = int(p2p[1].strip().split(",")[1])
-    _node = (x1,y1,x2,y2)
+    x1,y1 = list(map(int, node.split("->")[0].strip().split(",")))
+    x2,y2 = list(map(int, node.split("->")[1].strip().split(",")))
     if x1 == x2:
-        valid_nodes_x.append(_node)
         for i in range(min(y1,y2), max(y1,y2)+1):
             ocean[i][x1] += 1
     elif y1 == y2:
-        valid_nodes_y.append(_node)
         for i in range(min(x1,x2), max(x1,x2)+1):
             ocean[y1][i] += 1
-    elif is_diagonal(_node):
+    elif is_diagonal((x1,y1,x2,y2)):
         if is_part2 == True:
             direction_x = 1 if x2 > x1 else -1
             direction_y = 1 if y2 > y1 else -1
             _x, _y = x1 , y1
             for i in range(abs(x1 - x2) + 1):
                 ocean[_y][_x] += 1
-                _x += 1 * direction_x
-                _y += 1* direction_y
+                _x += direction_x
+                _y += direction_y
     else:
         pass
 
