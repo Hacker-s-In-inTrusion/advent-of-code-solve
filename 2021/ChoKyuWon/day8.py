@@ -1,25 +1,6 @@
 from aocd import data
 from aocd.models import Puzzle
 
-segments = {
-"0" : 0b1110111,
-"1" : 0b0010010,
-"2" : 0b1011101,
-"3" : 0b1011011,
-"4" : 0b0111010,
-"5" : 0b1101011,
-"6" : 0b1101111,
-"7" : 0b1010010,
-"8" : 0b1111111,
-"9" : 0b1111011,
-}
-
-# mapping should be...
-# mapping = {
-#     "a" : 0b0000100,
-#     "b" : 0b0010000,
-# }
-
 def atobit(ch)->int:
     return int("1"+"0"*(ord(ch) - ord('a')), 2)
 
