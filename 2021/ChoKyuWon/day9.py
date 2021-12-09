@@ -35,46 +35,39 @@ for x in range(len(heightmap)):
             low_points.append((x,y))
             score += (res + 1)
 
+history = []
 def basin_check(x,y,map):
-    my_val = map[x][y]
-    if (my_val == 9) or (my_val == 8):
-        return []
     ret = []
-    with suppress(IndexError):
-        if map[x + 1][y] == my_val + 1:
-            ret.append((x+1, y))
-    with suppress(IndexError):
-        if map[x][y + 1] == my_val + 1:
-            ret.append((x, y + 1))
-    if x > 0 :
-        if map[x - 1][y] == my_val + 1:
-            ret.append((x - 1, y))
-    if y > 0 :
-        if map[x][y - 1] == my_val + 1:
-            ret.append((x, y - 1))
+    if map[x][y] == 8:
+        return ret
+    
+    up = (x-1, y) if x > 0 else None
+    down = (x + 1, y) if x < len(map) - 1 else None
+    left = (x, y - 1) if y > 0 else None
+    right = (x, y + 1) if y < len(map[x]) - 1 else None
+
+    for i in [up,down,left,right]:
+        if i == None:
+            continue
+        if map[i[0]][i[1]] == map[x][y] + 1:
+            ret.append(i)
     return ret
 
 
-def traverse_map(x,y,map):
-    basin = [(x,y)]
-    p = basin_check(x,y,map)
-    if len(p) == 0:
-        return 1
-    while True:
-        x,y = p.pop()
-        basin.append((x,y))
-        quarantine = basin_check(x,y,map)
-        for _q in quarantine:
-            if _q not in basin:
-                p.append(_q)
-        if len(p) == 0:
-            break
-    
-    return len(basin)
+def dfs_traverse_map(x,y,map):
+    history.append((x,y))
+    basin_points = basin_check(x,y,map)
+
+    for _x, _y in basin_points:
+        if (_x,_y) not in history:
+            dfs_traverse_map(_x,_y,map)
+    return
+
 basin_size = []
 for x,y in low_points:
-    basin_size.append(traverse_map(x,y,heightmap))
+    history = []
+    dfs_traverse_map(x,y,heightmap)
+    basin_size.append(len(history))
 
 basin_size = sorted(basin_size)
-print(basin_size)
 print(basin_size[-1] * basin_size[-2] * basin_size[-3])
