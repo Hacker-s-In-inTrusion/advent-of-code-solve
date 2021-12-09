@@ -38,8 +38,6 @@ for x in range(len(heightmap)):
 history = []
 def basin_check(x,y,map):
     ret = []
-    if map[x][y] == 8:
-        return ret
     
     up = (x-1, y) if x > 0 else None
     down = (x + 1, y) if x < len(map) - 1 else None
@@ -49,7 +47,10 @@ def basin_check(x,y,map):
     for i in [up,down,left,right]:
         if i == None:
             continue
-        if map[i[0]][i[1]] == map[x][y] + 1:
+        target = map[i[0]][i[1]]
+        if target == 9:
+            continue
+        if target > map[x][y]:
             ret.append(i)
     return ret
 
