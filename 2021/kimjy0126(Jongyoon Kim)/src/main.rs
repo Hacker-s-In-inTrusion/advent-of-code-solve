@@ -36,4 +36,8 @@ fn main() {
     println!("=== Day 09: Smoke Basin ===");
     days::day09::day09();
     println!();
+
+    println!("=== Day 10: Syntax Scoring ===");
+    days::day10::day10();
+    println!();
 }
