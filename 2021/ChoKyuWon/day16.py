@@ -11,16 +11,13 @@ binary_tape = ""
 for ch in input_str:
     binary_tape += hex2bin(ch)
 
-
 class Packet():
     def __init__(self, version, id):
         self.version = version
         self.id = id
         self.subpacket = []
-        self.version_sum = version
     def add_subpacket(self, packet):
         self.subpacket.append(packet)
-        self.version_sum += packet.version_sum
     def add_literal(self, literal):
         self.literal = literal
 
