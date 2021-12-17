@@ -4,7 +4,7 @@ trench_range = [[70, 125], [-159, -121]]
 def inbound(point):
     if trench_range[0][1] < point[0]:
         return False
-    if trench_range[1][0] > point[1]:
+    elif trench_range[1][0] > point[1]:
         return False
     else:
         return True
