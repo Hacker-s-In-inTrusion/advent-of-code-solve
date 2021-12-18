@@ -14,7 +14,7 @@ pub fn day12() {
         path
     }
 
-    let input: Vec<(String, String)> = std::fs::read_to_string("input/input12_my.txt")
+    let input: Vec<(String, String)> = std::fs::read_to_string("input/input12.txt")
         .unwrap()
         .lines()
         .map(|s| {
@@ -50,8 +50,7 @@ fn day12_part1(path: &HashMap<&str, Vec<&str>>) {
 }
 
 fn day12_part2(path: &HashMap<&str, Vec<&str>>) {
-    fn permutation<'a>(path: &HashMap<&'a str, Vec<&'a str>>, current: &'a str, mut visit: &mut HashMap<&'a str, bool>, chance: bool) -> i32 {
-        println!("permutation({}, {})", current, chance);
+    fn permutation<'a>(path: &HashMap<&'a str, Vec<&'a str>>, current: &'a str, mut visit: &mut HashMap<&'a str, bool>, chance: Option<&str>) -> i32 {
         if current == "end" {
             return 1;
         }
@@ -64,26 +63,20 @@ fn day12_part2(path: &HashMap<&str, Vec<&str>>) {
                 0
             } else if !visit[next] {
                 permutation(path, next, &mut visit, chance)
-            } else if chance {
-                permutation(path, next, &mut visit, false)
+            } else if chance.is_none() {
+                permutation(path, next, &mut visit, Some(*next))
             } else {
                 0
             }
         ).sum();
-        *visit.get_mut(current).unwrap() = false;
+        if chance != Some(current) {
+            *visit.get_mut(current).unwrap() = false;
+        }
 
         result
     }
 
     let mut visit: HashMap<&str, bool> = path.keys().map(|s| *s).zip(vec![false; path.len()]).collect();
 
-    struct Argument {
-        current: &str,
-        visit: &HashMap<&str, bool>,
-        chance: bool
-    }
-
-    //let mut stack = vec![("start", 
-
-    println!("Part Two: {}", permutation(path, "start", &mut visit, true));
+    println!("Part Two: {}", permutation(path, "start", &mut visit, None));
 }
