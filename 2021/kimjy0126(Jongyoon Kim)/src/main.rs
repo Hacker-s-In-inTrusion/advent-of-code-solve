@@ -44,4 +44,8 @@ fn main() {
     println!("=== Day 11: Dumbo Octopus ===");
     days::day11::day11();
     println!();
+
+    println!("=== Day 12: Passage Pathing ===");
+    days::day12::day12();
+    println!();
 }
