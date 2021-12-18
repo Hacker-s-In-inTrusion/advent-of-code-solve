@@ -18,6 +18,10 @@ class Velocity():
         elif self.x > 0 : self.x -= 1
 
 class Probe():
+    def __init__(self, x,y):
+        self.x = 0
+        self.y = 0
+        self.velocity = Velocity(x,y)
     def __init__(self, v):
         self.velocity = v
         self.x = 0
@@ -28,17 +32,35 @@ class Probe():
         self.y += self.velocity.y
         self.max_height = max(self.max_height, self.y)
         self.velocity.step()
+    
+    def init(self, x, y):
+        self.x = 0
+        self.y = 0
+        self.velocity = Velocity(x,y)
 
 
 s = input_str.split(":")[1].strip().split(",")
 area = Area(int(s[0].split("=")[1].split("..")[0]), int(s[0].split("=")[1].split("..")[1]), int(s[1].split("=")[1].split("..")[0]), int(s[1].split("=")[1].split("..")[1]))
 
+
 max_height = (1<<64) * -1
 count = 0
-for i in range(1000):
+
+possible_x = []
+for init_x in range(1000):
+    pos_x = 0
+    dx = init_x
+    for step in range(1000):
+        if pos_x in area.x:
+            possible_x.append(init_x)
+            break
+        pos_x += dx
+        dx -= 1
+
+p = Probe((0,0))
+for i in possible_x:
     for j in range(-1000,1000):
-        v= Velocity(i, j)
-        p = Probe(v)
+        v = Velocity(i,j)
         if j > abs(min(area.y)):
             break
         while True:
