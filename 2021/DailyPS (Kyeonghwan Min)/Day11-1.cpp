@@ -45,6 +45,8 @@ int catch_flashes(void)
 
         if (g[i][j] > 9)
         {
+          is_flashed[i][j] = true;
+
           for (int k = 0; k < 8; k++)
           {
             int nx = j + dx[k];
@@ -72,7 +74,10 @@ int catch_flashes(void)
     for (int j = 0; j < len; j++)
     {
       if (is_flashed[i][j])
+      {
         ret++;
+        g[i][j] = 0;
+      }
     }
   }
 
