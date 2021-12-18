@@ -11,7 +11,7 @@ vector<int> g[15];
 int dx[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 int dy[8] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
-int catch_flashes(void)
+bool catch_flashes(void)
 {
   bool is_flashed[15][15] = { 0 };
   int ret = 0;
@@ -62,14 +62,20 @@ int catch_flashes(void)
     for (int j = 0; j < len; j++)
     {
       if (is_flashed[i][j])
-      {
-        ret++;
         g[i][j] = 0;
-      }
     }
   }
 
-  return ret;
+  for (int i = 0; i < sz; i++)
+  {
+    for (int j = 0; j < len; j++)
+    {
+      if (!is_flashed[i][j])
+        return false;
+    }
+  }
+
+  return true;
 }
 
 int main(void)
@@ -94,10 +100,25 @@ int main(void)
       g[i].push_back(octopus[i][j] - '0');
   }
 
-  for (int i = 0; i < 100; i++)
-    ans += catch_flashes();
+  int cnt = 0;
 
-  cout << ans;
+  while (true)
+  {
+    cnt++;
+
+    if (catch_flashes())
+      break;
+  }
+
+  cout << cnt << "\n";
+  
+  for (int i = 0; i < sz; i++)
+  {
+    for (int j = 0; j < len; j++)
+      cout << g[i][j] << " ";
+
+    cout << '\n';
+  }
 
   return 0;
 }
