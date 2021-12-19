@@ -36,7 +36,6 @@ void dfs(string s)
   if (!s.compare("end"))
   {
     ans++;
-    cout << "\n";
     return;
   }
 
