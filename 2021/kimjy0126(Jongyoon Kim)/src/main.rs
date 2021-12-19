@@ -51,9 +51,13 @@ fn main() {
     println!("=== Day 12: Passage Pathing ===");
     days::day12::day12();
     println!();
-    */
 
     println!("=== Day 13: Transparent Origami ===");
     days::day13::day13();
+    println!();
+    */
+
+    println!("=== Day 14: Extended Polymerization ===");
+    days::day14::day14();
     println!();
 }
