@@ -71,7 +71,6 @@ int main(void)
 
   for (auto it = g.begin(); it != g.end(); it++)
   {
-
     for (auto e : it->second)
     {
       if (e[0] >= 'a' && e[0] <= 'z' && (e.compare("start") && e.compare("end")))
