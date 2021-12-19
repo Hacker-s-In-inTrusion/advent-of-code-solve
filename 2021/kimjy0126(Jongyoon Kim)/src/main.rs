@@ -1,6 +1,9 @@
+#![allow(dead_code)]
+
 mod days;
 
 fn main() {
+    /*
     println!("=== Day 01: Sonar Sweep ===");
     days::day01::day01();
     println!();
@@ -47,5 +50,10 @@ fn main() {
 
     println!("=== Day 12: Passage Pathing ===");
     days::day12::day12();
+    println!();
+    */
+
+    println!("=== Day 13: Transparent Origami ===");
+    days::day13::day13();
     println!();
 }
