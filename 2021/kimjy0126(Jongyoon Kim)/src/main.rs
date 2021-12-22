@@ -59,9 +59,13 @@ fn main() {
     println!("=== Day 14: Extended Polymerization ===");
     days::day14::day14();
     println!();
-    */
 
     println!("=== Day 15: Chiton ===");
     days::day15::day15();
+    println!();
+    */
+
+    println!("=== Day 16: Packet Decoder ===");
+    days::day16::day16();
     println!();
 }
