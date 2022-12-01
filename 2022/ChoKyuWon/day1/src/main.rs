@@ -4,13 +4,11 @@ fn main() {
 
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
 struct Elf {
-    calrories : u64,
+    calrories: u64,
 }
 impl Elf {
-    fn new(cal:u64)->Self {
-        Elf {
-            calrories: cal,
-        }
+    fn new(cal: u64) -> Self {
+        Elf { calrories: cal }
     }
 }
 
@@ -29,5 +27,8 @@ fn solution() {
     }
     elves.sort_by(|a, b| b.cmp(a));
     println!("{}", elves[0].calrories);
-    println!("{}", elves[0].calrories + elves[1].calrories + elves[2].calrories);
+    println!(
+        "{}",
+        elves[0].calrories + elves[1].calrories + elves[2].calrories
+    );
 }
