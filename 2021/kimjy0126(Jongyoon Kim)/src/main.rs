@@ -1,6 +1,9 @@
+#![allow(dead_code)]
+
 mod days;
 
 fn main() {
+    /*
     println!("=== Day 01: Sonar Sweep ===");
     days::day01::day01();
     println!();
@@ -47,5 +50,26 @@ fn main() {
 
     println!("=== Day 12: Passage Pathing ===");
     days::day12::day12();
+    println!();
+
+    println!("=== Day 13: Transparent Origami ===");
+    days::day13::day13();
+    println!();
+
+    println!("=== Day 14: Extended Polymerization ===");
+    days::day14::day14();
+    println!();
+
+    println!("=== Day 15: Chiton ===");
+    days::day15::day15();
+    println!();
+
+    println!("=== Day 16: Packet Decoder ===");
+    days::day16::day16();
+    println!();
+    */
+
+    println!("=== Day 17: Trickshot ===");
+    days::day17::day17();
     println!();
 }
